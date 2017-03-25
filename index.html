@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>please work</title>
+        <meta charset="utf-8">
+        <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+    
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+      }
+
+       #results {
+        position: absolute;
+        top: 30px;
+        left: 25%;
+        z-index: 5;
+        background-color: #FFFFFF;
+        width: 225px;
+        margin-top: 10px;
+        border-style: dotted;
+
+      }
+    </style>
+    </head>
+    <body>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Washington, DC">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    
+    <div id = "results">	
+    		<br>
+    	<div id = "lat">Latitude: -38.9 </div><br>
+    	<div id = "long">Longitude: -77.0369</div> <br>
+
+    </div>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'),{
+          zoom: 8,
+          center: {lat: 38.907, lng: -77.037}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocode(geocoder, map);
+        });
+      }
+
+      function geocode(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var lati = results[0].geometry.location.lat();
+            var longi = results[0].geometry.location.lng();
+            document.getElementById("lat").innerHTML = "Latitude: " + lati;
+            document.getElementById("long").innerHTML = "Longitude: " + longi;
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful');
+          }
+        });
+      }
+    </script>
+    <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP0e71c-JOgdHollT1pQoMAKGDh_WO7AM&callback=initMap">
+    </script>
+  </body>
+
+</html>
