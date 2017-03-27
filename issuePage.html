@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Simply Me</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+  <script>
+    $(function () {
+      $(":file").change(function () {
+          if (this.files && this.files[0]) {
+              var reader = new FileReader();
+              reader.onload = imageIsLoaded;
+              reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#myImg').attr('src', e.target.result);
+    };
+  </script>
+
+  <script type="text/javascript">
+    
+    function calculate()
+    {
+      var first = document.getElementById("first");
+      var second = document.getElementById("second");
+      var hi = document.getElementById("hi")
+      console.log(first.value);
+      var s1 = 0;
+      var s2 = 0;
+      if (first.value == "A")
+        s1 = 4;
+      else if(first.value == "B")
+        s1 = 3;
+      else if(first.value == "C")
+        s1 = 2;
+      else if(first.value == "D")
+        s1 = 1;
+      else if(first.value == "F")
+        s1 = 0;
+
+      if (second.value == "A")
+        s2 = 4;
+      else if(second.value == "B")
+        s2 = 3;
+      else if(second.value == "C")
+        s2 = 2;
+      else if(second.value == "D")
+        s2 = 1;
+      else if(second.value == "F")
+        s2 = 0;
+
+      var avg = (s1+s2)/2;
+
+      hi.innerHTML = avg;
+
+    }
+
+    function solve()
+    {
+      //var solved = document.getElementById("solvedNum");
+      var target = document.getElementById("solve");
+      var latitude = localStorage.latitude;
+      var longitude = localStorage.longitude;
+
+        if(target.value == "0")
+        {
+            //solved.innerHTML = parseInt(solved.innerHTML) + 1;
+            target.value = "1"
+  var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {}
+        xmlhttp.open("GET", "incrementResolved.php?latitude=" + latitude + "&longitude=" + longitude + "&inc_val=1", true);
+        xmlhttp.send();
+        }
+        else
+        {
+          solved.innerHTML = parseInt(solved.innerHTML) - 1;
+          target.value = "0"
+  var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {}
+        xmlhttp.open("GET", "incrementResolved.php?latitude=" + latitude + "&longitude=" + longitude + "&inc_val=-1", true);
+        xmlhttp.send();
+        }
+
+    }
+    function report()
+    {
+      //var report = document.getElementById("reportNum");
+      var target = document.getElementById("report");
+      var latitude = localStorage.latitude;
+      var longitude = localStorage.longitude;
+
+        if(target.value == "0")
+        {
+            // report.innerHTML = parseInt(report.innerHTML) + 1;
+             target.value = "1"
+  var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {}
+        xmlhttp.open("GET", "incrementConfirmed.php?latitude=" + latitude + "&longitude=" + longitude + "&inc_val=1", true);
+        xmlhttp.send();
+        }
+        else
+        {
+          report.innerHTML = parseInt(report.innerHTML) - 1;
+          target.value = "0"
+  var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {}
+        xmlhttp.open("GET", "incrementConfirmed.php?latitude=" + latitude + "&longitude=" + longitude + "&inc_val=-1", true);
+        xmlhttp.send();
+        }
+    }
+
+  function get_report(){
+          var latitude = localStorage.latitude;
+          var longitude = localStorage.longitude;
+    $.ajax({
+      url:"get_report_info.php?latitude=" + latitude + '&longitude=' + longitude,
+      data:{
+        category:$("#category").val(),
+        description:$("#description").val()
+      },
+      success:function(result){
+        $("#outputDiv").html(result);
+      }
+    })
+}
+    </script>
+
+
+  <style>
+  body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg-4 { 
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
+  .bg-5 { 
+      background-color: #bc9c1a; /* Gold */
+      color: #fff;
+  }
+  .bg-6 { 
+      background-color: #bc1a3a; /* Red */
+      color: #fff;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body onload=get_report();>
+
+<!-- Navbar -->
+<!-- <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Me</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">WHO</a></li>
+        <li><a href="#">WHAT</a></li>
+        <li><a href="#">WHERE</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<!-- First Container -->
+<div id="myCarousel" class="container-fluid bg-1 text-center carousel slide" data-ride="carousel">
+  <div id="outputDiv">OUTPUT</div>
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner center-block" role="listbox">
+    <div class="item active">
+      <img src="http://hardwicktreecare.com/wp-content/uploads/2016/02/broken-tree.jpg" class="img-responsive margin" style="display:inline" alt="img1" width="480" height="480">
+    </div>
+
+    <div class="item">
+      <img src="http://www.nwtree.com/wp/wp-content/uploads/2014/07/cracked-broken-tree.jpg" class="img-responsive margin" style="display:inline" alt="img2" width="480" height="480">
+    </div>
+
+    <div class="item">
+      <img src="https://thumbs.dreamstime.com/x/broken-tree-stump-autumn-day-7227353.jpg" class="img-responsive margin" style="display:inline" alt="img3" width="480" height="480">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <p>Description of problem</p>
+</div>
+
+<!-- Second Container -->
+
+<div class="container-fluid bg-2 text-center">
+  <div class="row">
+    <div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">Want to help?</h3><br>
+  <div class="row">
+    <!-- <div class="col-sm-4"> -->
+      <button type="button" data-toggle="button" class="btn btn-primary btn-lg" id = "report" onClick = report() value = "0">Confirm</button>
+    <!-- </div> -->
+    <div > 
+      <button type="button" class="btn btn-primary btn-lg" id = "picture" onClick = addPicture()>Add Picture</button>
+      <br>
+      <br>
+        <input type='file' />
+            <img id="myImg" src="#" alt="your image" />
+    </div>
+    <!-- <div class="col-sm-4">  -->
+        <button type="button" data-toggle="button" class="btn btn-primary btn-lg" id = "solve" onClick = solve() value = "0">Resolve</button>
+    <!-- </div> -->
+  </div>
+</div>
+
+
+</body>
+</html>
+

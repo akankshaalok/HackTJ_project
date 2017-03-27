@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>First AJAX Call</title>
+	<style type="text/css">
+
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		function calculate(){
+			$.ajax({
+				url:"input.php",
+				data:{
+					num1:$("#num1").val(),
+					num2:$("#num2").val()
+				},
+				success:function(result){
+					$("#outputDiv").html(result);
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<input type=text id="num1">
+	<input type=text id="num2">
+	<button onclick="calculate()">submit</button>
+	<div id="outputDiv">hI</div>
+</body>
+</html>
