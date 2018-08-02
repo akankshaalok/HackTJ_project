@@ -1,7 +1,8 @@
-# README #
+# COMMUNITYWORKS #
 
 Welcome to our team's 2017 HackTJ Project!!
 Hayun Chong, Cece Chu, Elizabeth Hu, Akanksha Alok
+(Files transferred from Bitbucket)
 
 Inspiration
 We created CommunityWorks with a vision for healthier, cleaner, and more connected communities with the use of technology. With CommunityWorks, the goverment, HOA's, and members of the community are able to track the municipal issues that often go ignored but pose as every-day risks.
