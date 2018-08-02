@@ -2,6 +2,7 @@
 
 Welcome to our team's 2017 HackTJ Project!!
 Hayun Chong, Cece Chu, Elizabeth Hu, Akanksha Alok
+
 (Files transferred from Bitbucket)
 
 Inspiration
